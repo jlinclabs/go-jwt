@@ -1,9 +1,5 @@
 package jwt
 
-import (
-	"crypto/ed25519"
-)
-
 type Header struct {
 	Algorithm string `json:"alg"`
 	Type      string `json:"typ"`
@@ -11,12 +7,13 @@ type Header struct {
 type EdDsaHeader struct {
 	Algorithm string `json:"alg"`
 	Type      string `json:"typ"`
-	JWS       Jws
+	JWK       Jwk    `json:"jwk"`
 }
-type Jws struct {
-	Kty string            `json:"kty"`
-	Crv string            `json:"crv"`
-	X   ed25519.PublicKey `json:"x"`
+type Jwk struct {
+	Kty string `json:"kty"`
+	Crv string `json:"crv"`
+	X   string `json:"x"`
+	Kid string `json:"kid"`
 }
 
 type Jwt struct {
