@@ -4,7 +4,6 @@ import (
 	"crypto/ed25519"
 	"encoding/json"
 	"errors"
-	"log"
 )
 
 func SignEdDsa(payload, publicKey, privateKey, didKeyUrl string) (signedJwt string, err error) {
@@ -34,6 +33,5 @@ func SignEdDsa(payload, publicKey, privateKey, didKeyUrl string) (signedJwt stri
 	signature := ed25519.Sign(signer, []byte(toBeSigned))
 
 	signedJwt = toBeSigned + "." + b64Encode(signature)
-	log.Printf("pk: %s, jwt: %s\n", b64Encode(signer), signedJwt)
 	return signedJwt, nil
 }
